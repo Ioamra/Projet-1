@@ -7,6 +7,7 @@
 </head>
 <body>
     <?php require_once 'includes/bdd.php'; 
+    require_once 'includes/nav.php';
     
     if (isset($_POST['mail'])){
         $mail = $_POST['mail'];

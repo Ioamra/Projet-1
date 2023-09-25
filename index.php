@@ -5,7 +5,8 @@
     <?php require_once 'includes/head.php'; ?>
 </head>
 <body>
-    <?php require_once 'includes/bdd.php'; 
+    <?php require_once 'includes/bdd.php';
+    require_once 'includes/nav.php';
     session_start();
     ?>
     <a href="connexion">connexion</a>
