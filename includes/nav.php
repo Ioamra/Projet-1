@@ -11,8 +11,18 @@
         </section>
     </section>
     <ul class="nav-links">
+        
+    <?php
+        if(empty($_SESSION['id'])) {
+    ?>
         <li><a href="connexion" title="connexion">Connexion</a></li>
-        <li><a href="inscription" title="inscription">inscription</a></li>
-        <li><a href="logout" title="deconection">Deconection</a></li>
+        <li><a href="inscription" title="inscription">Inscription</a></li>
+    <?php
+        } else {
+    ?>
+        <li><a href="logout" title="déconexion">Déconexion</a></li>
+    <?php
+        }
+    ?>
     </ul>
 </nav>

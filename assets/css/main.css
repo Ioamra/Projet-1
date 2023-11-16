@@ -89,11 +89,10 @@ body {
 }
 .navbar .nav-links li a {
   text-decoration: none;
-  padding: 20px;
+  padding: 1em;
+  margin: 0 0.125em;
   color: white;
   display: block;
-  margin-left: 1em;
-  margin-right: 1em;
 }
 .navbar .nav-links.show {
   transform: translate(0);
