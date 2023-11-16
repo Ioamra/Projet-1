@@ -13,11 +13,11 @@
     $mes_error = "";
     if(isset($_POST['submit'])){
         $mail = $_POST['mail'];
-        $mdp = sha1($_POST['password']);
+        $password = hash('sha256', $_POST['password']);
 
-        $req = $bdd->prepare("SELECT mail, mdp FROM user WHERE mail = :mail AND mdp = :mdp");
+        $req = $bdd->prepare("SELECT id FROM user WHERE mail = :mail AND password = :password");
         $req->bindParam('mail', $mail, PDO::PARAM_STR);
-        $req->bindParam('mdp', $mdp, PDO::PARAM_STR);
+        $req->bindParam('password', $password, PDO::PARAM_STR);
         $req->execute();
         
         if($req->rowCount() == 1){
