@@ -1,0 +1,106 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    padding-top: 120px;
+}
+
+/* NAVBAR */
+
+.navbar {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    color: white;
+    height: 70px;
+
+    @media (min-width: 600px) {
+        flex-direction: row;
+    }
+    
+    .nav-header {
+        background-color: rgb(20, 20, 20);
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 20;
+        min-height: 70px;
+        padding: 0 20px;
+
+        .icon-menu-dropdown {
+            display: block;
+            
+            @media (min-width:600px) {
+                display: none;
+            }
+
+            img {
+                height: 60px;
+                width: auto;
+            }
+        }
+
+        .nav-logo {
+            display: none;
+            height: 60px;
+            width: auto;
+
+            @media (min-width:600px) {
+                display: block;
+            }
+
+            img {
+                height: 60px;
+                width: auto;
+            }
+        }
+
+        .nav-title {
+            color: white;
+
+            @media (min-width:600px) {
+                display: none;
+            }
+        }
+    }
+    
+    .nav-links {
+        list-style: none;
+        background-color: rgb(20, 20, 20);
+        width: 100%;
+        z-index: 10;
+        transform: translate(0, -100%);
+        transition: all ease-in-out .3s;
+        
+        @media (min-width:600px) {
+            transform: none;
+            height: 100%;
+            width: fit-content;
+            display: flex;
+            align-items: center;
+        }
+
+        li {
+            a {
+                text-decoration: none;
+                padding: 20px;
+                color: white;
+                display: block;
+                margin-left: 1em;
+                margin-right: 1em;
+            }
+        }
+
+        &.show {
+            transform: translate(0);
+        }
+    }
+}

@@ -5,12 +5,11 @@
     <?php require_once 'includes/head.php'; ?>
 </head>
 <body>
-    <?php require_once 'includes/bdd.php';
-    require_once 'includes/nav.php';
+    <?php
     session_start();
+    require_once 'includes/bdd.php';
+    require_once 'includes/nav.php';
     ?>
-    <a href="connexion">connexion</a>
-    <a href="inscription">inscription</a>
-    <a href="logout">logout</a>
+
 </body>
 </html>
