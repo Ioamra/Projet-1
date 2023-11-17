@@ -26,7 +26,7 @@ body {
   }
 }
 .navbar .nav-header {
-  background-color: rgb(20, 20, 20);
+  background-color: #0a0a0a;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -71,7 +71,7 @@ body {
 }
 .navbar .nav-links {
   list-style: none;
-  background-color: rgb(20, 20, 20);
+  background-color: #0a0a0a;
   width: 100%;
   z-index: 10;
   transform: translate(0, -100%);
@@ -96,4 +96,23 @@ body {
 }
 .navbar .nav-links.show {
   transform: translate(0);
+}
+
+#top {
+  position: absolute;
+  top: 0;
+}
+
+#btn-return-top {
+  position: fixed;
+  bottom: 3em;
+  right: 3em;
+  display: none;
+}
+#btn-return-top.show {
+  display: block;
+}
+#btn-return-top img {
+  width: 4em;
+  height: 4em;
 }/*# sourceMappingURL=main.css.map */

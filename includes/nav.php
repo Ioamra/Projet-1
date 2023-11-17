@@ -1,4 +1,4 @@
-<nav class="navbar">
+<nav id="navbar" class="navbar">
     <section class="nav-header">
         <section class="nav-logo">
             <a href="./">
@@ -26,3 +26,5 @@
     ?>
     </ul>
 </nav>
+
+<div id="top"></div>

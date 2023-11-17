@@ -26,7 +26,7 @@ body {
     }
     
     .nav-header {
-        background-color: rgb(20, 20, 20);
+        background-color: #0a0a0a;
         width: 100%;
         display: flex;
         justify-content: space-between;
@@ -74,7 +74,7 @@ body {
     
     .nav-links {
         list-style: none;
-        background-color: rgb(20, 20, 20);
+        background-color: #0a0a0a;
         width: 100%;
         z-index: 10;
         transform: translate(0, -100%);
@@ -101,5 +101,29 @@ body {
         &.show {
             transform: translate(0);
         }
+    }
+}
+
+// Pour scroll en haut de la page (impossible sur la navbar car elle a position: fixed)
+#top {
+    position: absolute;
+    top: 0;
+}
+
+// Boutton pour retourné en haut
+
+#btn-return-top {
+    position: fixed;
+    bottom: 3em;
+    right: 3em;
+    display: none;
+
+    &.show {
+        display: block;
+    }
+
+    img {
+        width: 4em;
+        height: 4em;
     }
 }

@@ -3,12 +3,14 @@
 <head>
     <title>Connexion</title>
     <?php require_once 'includes/head.php'; ?>
+    <meta name="description" content="Connectez-vous à notre forum pour participer à des discussions passionnantes, poser des questions, et partager vos connaissances avec la communauté.">
     <link rel="stylesheet" href="assets/css/login.css">
 </head>
 <body>
     <?php 
     require_once 'includes/bdd.php'; 
     require_once 'includes/nav.php';
+    require_once 'includes/btn-return-top.php';
 
     $mes_error = "";
     if(isset($_POST['submit'])){
