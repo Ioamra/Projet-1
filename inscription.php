@@ -66,13 +66,8 @@
             $req->bindParam(':password', $password, PDO::PARAM_STR);
             $req->execute();
     
-            $req = $bdd->prepare("SELECT id FROM user WHERE mail = '$mail'");
-            $req->execute();
-            $data = $req->fetch(\PDO::FETCH_OBJ);
-            $id = $data->id;   
-    
             session_start();
-            $_SESSION['id'] = $id;
+            $_SESSION['id'] = $bdd->lastInsertId();
             header("location:index.php");
         }
     }
@@ -91,25 +86,7 @@
                 <input class="w-100" id="password" type="password" name="password" required>
                 <label class="w-100 d-block" for="password-confirm">Confirmation du mot de passe</label>
                 <input class="w-100" id="password-confirm" type="password" name="password-confirm" required>
-                <button class="w-100" type="submit" name="submit">Se connecter</button>
-                <a href="connexion.php">Vous avez un compte, connectez-vous !</a>
-                <p class="error"><?=$mes_error?></p>
-            </form>
-        </section>
-    </section>
-    <section class="container">
-        <section class="card">
-            <form method="post">
-                <h2 class="mt-0">Inscription</h2>
-                <label class="w-100 d-block" for="mail">Mail</label>
-                <input class="w-100" id="mail" type="email" name="mail" value="<?php if (isset($mail)) {echo $mail;} ?>" required>
-                <label class="w-100 d-block" for="pseudo">Pseudo</label>
-                <input class="w-100" id="pseudo" type="text" name="pseudo" value="<?php if (isset($pseudo)) {echo $pseudo;} ?>" required>
-                <label class="w-100 d-block" for="password">Mot de passe</label>
-                <input class="w-100" id="password" type="password" name="password" required>
-                <label class="w-100 d-block" for="password-confirm">Confirmation du mot de passe</label>
-                <input class="w-100" id="password-confirm" type="password" name="password-confirm" required>
-                <button class="w-100" type="submit" name="submit">Se connecter</button>
+                <button class="w-100" type="submit" name="submit">S'inscrire</button>
                 <a href="connexion.php">Vous avez un compte, connectez-vous !</a>
                 <p class="error"><?=$mes_error?></p>
             </form>
