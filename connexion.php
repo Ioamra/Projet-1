@@ -17,18 +17,18 @@
         $mail = $_POST['mail'];
         $password = hash('sha256', $_POST['password']);
 
-        $req = $bdd->prepare("SELECT id FROM user WHERE mail = :mail AND password = :password");
+        $req = $bdd->prepare("SELECT id_user FROM user WHERE mail = :mail AND password = :password");
         $req->bindParam('mail', $mail, PDO::PARAM_STR);
         $req->bindParam('password', $password, PDO::PARAM_STR);
         $req->execute();
         
         if($req->rowCount() == 1){
-            $req = $bdd->prepare("SELECT id FROM user WHERE mail = '$mail'");
+            $req = $bdd->prepare("SELECT id_user FROM user WHERE mail = '$mail'");
             $req->execute();
             $data_user = $req->fetch(\PDO::FETCH_OBJ);
     
             session_start();
-            $_SESSION['id'] = $data_user->id;
+            $_SESSION['id'] = $data_user->id_user;
             header("location:index.php");
         } else {
             $mes_error = "Identifiant ou mot de passe invalide.";

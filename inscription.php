@@ -43,7 +43,7 @@
             $validation = false;
         }
         // Verif que le mail n'est pas déjà utilisé
-        $req = $bdd->prepare("SELECT id FROM user WHERE mail = '$mail'");
+        $req = $bdd->prepare("SELECT id_user FROM user WHERE mail = '$mail'");
         $req->execute();
         if ($req->rowCount() > 0) {
             $validation = False;
@@ -51,7 +51,7 @@
             $mail = "";
         }
         // Verif que le pseudo n'est pas déjà utilisé
-        $req = $bdd->prepare("SELECT id FROM user WHERE pseudo = '$pseudo'");
+        $req = $bdd->prepare("SELECT id_user FROM user WHERE pseudo = '$pseudo'");
         $req->execute();
         if ($req->rowCount() > 0) {
             $validation = False;
