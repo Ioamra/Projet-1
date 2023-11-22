@@ -11,7 +11,6 @@
         </section>
     </section>
     <ul class="nav-links">
-        
     <?php
         if(empty($_SESSION['id'])) {
     ?>
@@ -20,7 +19,9 @@
     <?php
         } else {
     ?>
-        <li><a href="logout" title="déconexion">Déconexion</a></li>
+        <li><a href="index.php" title="acceuil">Acceuil</a></li>
+        <li><a href="creer-un-topic" title="créer un topic">Créer un topic</a></li>
+        <li><a href="deconnexion" title="déconexion">Déconexion</a></li>
     <?php
         }
     ?>

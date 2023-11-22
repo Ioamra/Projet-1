@@ -13,20 +13,20 @@
     require_once 'includes/btn-return-top.php';
     
     $mes_error = "";
-    if (isset($_POST['mail'])) {
+    if (isset($_POST['submit'])) {
         $mail = $_POST['mail'];
         $pseudo = $_POST['pseudo'];
         $password = hash('sha256', $_POST['password']);
 
         $validation = true;
 
-        // Verif que pseudo n'a pas plus de 16 caractère (limite bdd)
+        // Verif que pseudo n'a pas plus de 16 caractères (limite bdd)
         if (strlen($pseudo) < 3 && strlen($pseudo) > 16) {
             $validation = False;
             $mes_error = "<br/>Le pseudo doit avoir entre 3 et 16 caractères.";
             $pseudo = "";
         }
-        // Verif que mail n'a pas plus de 320 caractère (limite bdd)
+        // Verif que mail n'a pas plus de 320 caractères (limite bdd)
         if (strlen($mail) > 320) {
             $validation = False;
             $mes_error = "<br/>Votre adresse mail ne peut pas avoir plus de 320 caractères.";
@@ -59,7 +59,7 @@
             $pseudo = "";
         }
 
-        if ($validation == true) {
+        if ($validation) {
             $req = $bdd->prepare("INSERT INTO user (mail, pseudo, password) VALUES (:mail, :pseudo, :password)");
             $req->bindParam(':mail', $mail, PDO::PARAM_STR);
             $req->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
@@ -78,15 +78,15 @@
         <section class="card">
             <form method="post">
                 <h2 class="mt-0">Inscription</h2>
-                <label class="w-100 d-block" for="mail">Mail</label>
-                <input class="w-100" id="mail" type="email" name="mail" value="<?php if (isset($mail)) {echo $mail;} ?>" required>
-                <label class="w-100 d-block" for="pseudo">Pseudo</label>
-                <input class="w-100" id="pseudo" type="text" name="pseudo" value="<?php if (isset($pseudo)) {echo $pseudo;} ?>" required>
-                <label class="w-100 d-block" for="password">Mot de passe</label>
-                <input class="w-100" id="password" type="password" name="password" required>
-                <label class="w-100 d-block" for="password-confirm">Confirmation du mot de passe</label>
-                <input class="w-100" id="password-confirm" type="password" name="password-confirm" required>
-                <button class="w-100" type="submit" name="submit">S'inscrire</button>
+                <label for="mail">Mail</label>
+                <input id="mail" type="email" name="mail" value="<?php if (isset($mail)) {echo $mail;} ?>" required>
+                <label for="pseudo">Pseudo</label>
+                <input id="pseudo" type="text" name="pseudo" value="<?php if (isset($pseudo)) {echo $pseudo;} ?>" required>
+                <label for="password">Mot de passe</label>
+                <input id="password" type="password" name="password" required>
+                <label for="password-confirm">Confirmation du mot de passe</label>
+                <input id="password-confirm" type="password" name="password-confirm" required>
+                <button type="submit" name="submit">S'inscrire</button>
                 <a href="connexion.php">Vous avez un compte, connectez-vous !</a>
                 <p class="error"><?=$mes_error?></p>
             </form>

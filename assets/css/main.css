@@ -87,6 +87,12 @@ body {
     align-items: center;
   }
 }
+@media (min-width: 600px) {
+  .navbar .nav-links li {
+    min-width: 140px;
+    text-align: center;
+  }
+}
 .navbar .nav-links li a {
   text-decoration: none;
   padding: 1em;
