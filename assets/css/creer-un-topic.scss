@@ -45,6 +45,7 @@
         border: 1px solid rgb(210, 210, 210);
         outline: none;
         resize: vertical;
+        padding: 0.5em;
 
         &:focus {
             box-shadow: 0 0 0 2px rgb(190, 190, 190);

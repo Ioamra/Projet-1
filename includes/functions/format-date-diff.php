@@ -1,5 +1,6 @@
 <?php
 function formatDateDiff($date) {
+    date_default_timezone_set('Europe/Paris');
     $diff = time() - DateTime::createFromFormat('d/m/Y H:i', $date)->getTimestamp();
     $oneMinute = 60;
     $oneHours = 60 * 60;

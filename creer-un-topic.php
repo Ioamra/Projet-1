@@ -28,6 +28,7 @@
         }
         
         if ($validation) {
+            date_default_timezone_set('Europe/Paris');
             $date = date('d/m/Y H:i');
             $req = $bdd->prepare("INSERT INTO topic (title_topic, message_topic, date_topic, id_user) VALUES (:title, :message, :date, :id_user)");
             $req->bindParam(':title', $title, PDO::PARAM_STR);
@@ -35,6 +36,7 @@
             $req->bindParam(':date', $date, PDO::PARAM_STR);
             $req->bindParam(':id_user', $_SESSION['id'], PDO::PARAM_INT);
             $req->execute();
+            header('location:index.php');
         }
     }
     ?>

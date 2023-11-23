@@ -23,7 +23,7 @@
     $offset = ($page - 1) * $nb_topics_by_page;
     $req = $bdd->prepare("SELECT id_topic, title_topic, message_topic, date_topic, pseudo_user FROM topic INNER JOIN user ON topic.id_user = user.id_user LIMIT $nb_topics_by_page OFFSET $offset");
     $req->execute();
-    $list_topic = $req->fetchAll();
+    $list_topic = $req->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
     <section class="card-container">
