@@ -17,14 +17,12 @@
         $mail = $_POST['mail'];
         $password = hash('sha256', $_POST['password']);
 
-        $req = $bdd->prepare("SELECT id_user FROM user WHERE mail = :mail AND password = :password");
+        $req = $bdd->prepare("SELECT id_user FROM user WHERE mail_user = :mail AND password_user = :password");
         $req->bindParam('mail', $mail, PDO::PARAM_STR);
         $req->bindParam('password', $password, PDO::PARAM_STR);
         $req->execute();
         
         if($req->rowCount() == 1){
-            $req = $bdd->prepare("SELECT id_user FROM user WHERE mail = '$mail'");
-            $req->execute();
             $data_user = $req->fetch(\PDO::FETCH_OBJ);
     
             session_start();

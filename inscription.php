@@ -43,7 +43,7 @@
             $validation = false;
         }
         // Verif que le mail n'est pas déjà utilisé
-        $req = $bdd->prepare("SELECT id_user FROM user WHERE mail = '$mail'");
+        $req = $bdd->prepare("SELECT id_user FROM user WHERE mail_user = '$mail'");
         $req->execute();
         if ($req->rowCount() > 0) {
             $validation = False;
@@ -51,7 +51,7 @@
             $mail = "";
         }
         // Verif que le pseudo n'est pas déjà utilisé
-        $req = $bdd->prepare("SELECT id_user FROM user WHERE pseudo = '$pseudo'");
+        $req = $bdd->prepare("SELECT id_user FROM user WHERE pseudo_user = '$pseudo'");
         $req->execute();
         if ($req->rowCount() > 0) {
             $validation = False;
@@ -60,7 +60,7 @@
         }
 
         if ($validation) {
-            $req = $bdd->prepare("INSERT INTO user (mail, pseudo, password) VALUES (:mail, :pseudo, :password)");
+            $req = $bdd->prepare("INSERT INTO user (mail_user, pseudo_user, password_user) VALUES (:mail, :pseudo, :password)");
             $req->bindParam(':mail', $mail, PDO::PARAM_STR);
             $req->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
             $req->bindParam(':password', $password, PDO::PARAM_STR);
