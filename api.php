@@ -1,5 +1,6 @@
 <?php
 require_once 'includes/bdd.php';
+require_once 'includes/functions/format-date-diff.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode(file_get_contents('php://input'));
     if ($data->action) {
@@ -27,6 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     WHERE id_topic = '.$data->id_topic.' ORDER BY STR_TO_DATE(date_comment, "%d/%m/%Y %H:%i") ASC');
                 $req->execute();
                 $data = $req->fetchAll(PDO::FETCH_ASSOC);
+                for ($i=0; $i < count($data); $i++) { 
+                    $data[$i]['date_comment'] = formatDateDiff($data[$i]['date_comment']);
+                }
                 echo json_encode(['success' => true, 'data' => $data]);
             } else {
                 echo json_encode(['success' => false]);

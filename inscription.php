@@ -68,29 +68,28 @@
     
             session_start();
             $_SESSION['id'] = $bdd->lastInsertId();
+            $_SESSION['role'] = 0;
             header("location:index.php");
         }
     }
     
     
     ?>
-    <section class="container">
-        <section class="card">
-            <form method="post">
-                <h2 class="mt-0">Inscription</h2>
-                <label for="mail">Mail</label>
-                <input id="mail" type="email" name="mail" value="<?php if (isset($mail)) {echo $mail;} ?>" required>
-                <label for="pseudo">Pseudo</label>
-                <input id="pseudo" type="text" name="pseudo" value="<?php if (isset($pseudo)) {echo $pseudo;} ?>" required>
-                <label for="password">Mot de passe</label>
-                <input id="password" type="password" name="password" required>
-                <label for="password-confirm">Confirmation du mot de passe</label>
-                <input id="password-confirm" type="password" name="password-confirm" required>
-                <button type="submit" name="submit">S'inscrire</button>
-                <a href="connexion.php">Vous avez un compte, connectez-vous !</a>
-                <p class="error"><?=$mes_error?></p>
-            </form>
-        </section>
+    <section class="card-container">
+        <form method="post">
+            <h2 class="mt-0">Inscription</h2>
+            <label for="mail">Mail</label>
+            <input id="mail" type="email" name="mail" value="<?php if (isset($mail)) {echo $mail;} ?>" required>
+            <label for="pseudo">Pseudo</label>
+            <input id="pseudo" type="text" name="pseudo" value="<?php if (isset($pseudo)) {echo $pseudo;} ?>" required>
+            <label for="password">Mot de passe</label>
+            <input id="password" type="password" name="password" required>
+            <label for="password-confirm">Confirmation du mot de passe</label>
+            <input id="password-confirm" type="password" name="password-confirm" required>
+            <button type="submit" name="submit">S'inscrire</button>
+            <a href="connexion.php">Vous avez un compte, connectez-vous !</a>
+            <p class="error"><?=$mes_error?></p>
+        </form>
     </section>
 </body>
 </html>

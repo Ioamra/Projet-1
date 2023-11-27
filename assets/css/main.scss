@@ -8,6 +8,29 @@ body {
     padding-top: 120px;
 }
 
+.card-container {
+    width: 96%;
+    margin-left: 2%;
+    padding: 1em;
+    box-shadow: 0 0 25px 5px rgba(0,0,0,0.125);
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    @media (min-width: 600px) {
+        width: 85%;
+        margin-left: 7.5%;
+        padding: 1.5em;
+    }
+
+    @media (min-width: 1200px) {
+        width: 70%;
+        margin-left: 15%;
+        padding: 2em;
+    }
+}
+
 /* NAVBAR */
 
 .navbar {
@@ -89,10 +112,7 @@ body {
         }
 
         li {
-            @media (min-width:600px) {
-                min-width: 140px;
-                text-align: center;
-            }
+            white-space: nowrap;
             
             a {
                 text-decoration: none;

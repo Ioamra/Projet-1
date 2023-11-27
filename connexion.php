@@ -17,7 +17,7 @@
         $mail = $_POST['mail'];
         $password = hash('sha256', $_POST['password']);
 
-        $req = $bdd->prepare("SELECT id_user FROM user WHERE mail_user = :mail AND password_user = :password");
+        $req = $bdd->prepare("SELECT id_user, role_user FROM user WHERE mail_user = :mail AND password_user = :password");
         $req->bindParam('mail', $mail, PDO::PARAM_STR);
         $req->bindParam('password', $password, PDO::PARAM_STR);
         $req->execute();
@@ -27,25 +27,24 @@
     
             session_start();
             $_SESSION['id'] = $data_user->id_user;
+            $_SESSION['role'] = $data_user->role_user;
             header("location:index.php");
         } else {
             $mes_error = "Identifiant ou mot de passe invalide.";
         }
     }   
     ?>
-    <section class="container">
-        <section class="card">
-            <form method="post">
-                <h2 class="mt-0">Connexion</h2>
-                <label class="w-100 d-block" for="mail">Mail</label>
-                <input class="w-100" id="mail" type="email" name="mail" required>
-                <label class="w-100 d-block" for="password">Mot de passe</label>
-                <input class="w-100" id="password" type="password" name="password" required>
-                <button class="w-100" type="submit" name="submit">Se connecter</button>
-                <a href="inscription.php">Vous n'avez pas de compte, inscrivez-vous !</a>
-                <p class="error"><?=$mes_error?></p>
-            </form>
-        </section>
+    <section class="card-container">
+        <form method="post">
+            <h2 class="mt-0">Connexion</h2>
+            <label class="w-100 d-block" for="mail">Mail</label>
+            <input class="w-100" id="mail" type="email" name="mail" required>
+            <label class="w-100 d-block" for="password">Mot de passe</label>
+            <input class="w-100" id="password" type="password" name="password" required>
+            <button class="w-100" type="submit" name="submit">Se connecter</button>
+            <a href="inscription.php">Vous n'avez pas de compte, inscrivez-vous !</a>
+            <p class="error"><?=$mes_error?></p>
+        </form>
     </section>
 </body>
 </html>

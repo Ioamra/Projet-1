@@ -39,9 +39,7 @@
                 <button name="submit-comment" onclick="addComment(<?=$_GET['id']?>, <?=$_SESSION['id']?>)">Ajouter un commentaire</button>
             </section>
         </section>
-        <section class="comment">
-
-        </section>
+        <section id="comment-container"></section>
     </section>
 
 </body>

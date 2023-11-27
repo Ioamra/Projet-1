@@ -1,80 +1,84 @@
-.card-container {
-    width: 90%;
-    margin-left: 5%;
-    box-shadow: 0 0 25px 5px rgba(0,0,0,0.125);
-    border-radius: 1rem;
-    padding: 2em;
+.topic {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    margin-bottom: 1em;
+    padding: 1em;
+    border: 1px solid rgba(0,0,0,0.125);
+    border-radius: 1rem;
+    width: 100%;
+
+    .topic-title {
+        text-align: center;
+        margin-bottom: 0.5em;
+    }
+
+    .topic-content {
+        margin-bottom: 0.5em;
+        width: 100%;
+    }
+
+    .topic-author-and-date {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin: 0 0.5em;
+    }
+}
+
+.add-comment {
+    width: 100%;
+    margin-bottom: 1em;
+
+    textarea {
+        width: 100%;
+        border-radius: 5px;
+        border: 1px solid rgb(210, 210, 210);
+        outline: none;
+        resize: vertical;
+        padding: 0.5em;
+
+        &:focus {
+            box-shadow: 0 0 0 2px rgb(190, 190, 190);
+        }
+    }
     
-    @media (min-width: 600px) {
-        width: 80%;
-        margin-left: 10%;
-    }
+    .container-btn-submit {
+        display: flex;
+        justify-content: flex-end;
 
-    @media (min-width: 1200px) {
-        width: 60%;
-        margin-left: 20%;
+        button {
+            cursor: pointer;
+            border-radius: 5px;
+            background-color: transparent;
+            border: 1px solid rgb(210, 210, 210);
+            height: 2.5em;
+            padding: 0 2em;
+        }
     }
+}
 
-    .topic {
+#comment-container {
+    width: 100%;
+    
+    .comment {
         display: flex;
         flex-direction: column;
         margin-bottom: 1em;
         padding: 1em;
         border: 1px solid rgba(0,0,0,0.125);
         border-radius: 1rem;
-
-        .topic-title {
-            text-align: center;
+        width: 100%;
+    
+        .comment-content {
             margin-bottom: 0.5em;
+            width: 100%;
         }
     
-        .topic-content {
-            margin-bottom: 0.5em;
-        }
-    
-        .topic-author-and-date {
+        .comment-author-and-date {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
             margin: 0 0.5em;
         }
-    }
-
-    .add-comment {
-        width: 100%;
-
-        textarea {
-            width: 100%;
-            border-radius: 5px;
-            border: 1px solid rgb(210, 210, 210);
-            outline: none;
-            resize: vertical;
-            padding: 0.5em;
-
-            &:focus {
-                box-shadow: 0 0 0 2px rgb(190, 190, 190);
-            }
-        }
-        
-        .container-btn-submit {
-            display: flex;
-            justify-content: flex-end;
-
-            button {
-                cursor: pointer;
-                border-radius: 5px;
-                background-color: transparent;
-                border: 1px solid rgb(210, 210, 210);
-                height: 2.5em;
-                padding: 0 2em;
-            }
-        }
-    }
-
-    .comment {
-        
     }
 }

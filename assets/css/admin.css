@@ -1,0 +1,39 @@
+article {
+  width: 100%;
+}
+article .dropdown-btn {
+  cursor: pointer;
+  width: 100%;
+  border-radius: 5px 5px 0 0;
+  background-color: transparent;
+  border: 1px solid rgb(210, 210, 210);
+  height: 2.5em;
+}
+article .dropdown-content table {
+  width: 100%;
+  text-align: center;
+  border: 1px solid rgb(210, 210, 210);
+}
+article .dropdown-content table tbody {
+  display: block;
+  border-top: 1px solid rgb(210, 210, 210);
+}
+article .dropdown-content table tr {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.25em 0;
+}
+article .dropdown-content table tr th, article .dropdown-content table tr td {
+  flex: 1;
+}
+article .dropdown-content table tr th button, article .dropdown-content table tr td button {
+  cursor: pointer;
+  width: 80%;
+  border-radius: 5px;
+  background-color: transparent;
+  border: 1px solid rgb(210, 210, 210);
+  height: 2em;
+}
+article .dropdown-content table tr .btn-delete {
+  max-width: 20px;
+}/*# sourceMappingURL=admin.css.map */

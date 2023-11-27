@@ -1,7 +1,7 @@
 <nav id="navbar" class="navbar">
     <section class="nav-header">
         <section class="nav-logo">
-            <a href="./">
+            <a href="index">
                 <img src="assets/img/logo.jpg" alt="logo">
             </a>
         </section>
@@ -12,17 +12,16 @@
     </section>
     <ul class="nav-links">
     <?php
-        if(empty($_SESSION['id'])) {
-    ?>
-        <li><a href="connexion" title="connexion">Connexion</a></li>
-        <li><a href="inscription" title="inscription">Inscription</a></li>
-    <?php
+        if (empty($_SESSION['id'])) {
+            echo '<li><a href="connexion" title="connexion">Connexion</a></li>';
+            echo '<li><a href="inscription" title="inscription">Inscription</a></li>';
         } else {
-    ?>
-        <li><a href="index.php" title="acceuil">Acceuil</a></li>
-        <li><a href="creer-un-topic" title="créer un topic">Créer un topic</a></li>
-        <li><a href="deconnexion" title="déconexion">Déconexion</a></li>
-    <?php
+            echo '<li><a href="index" title="acceuil">Acceuil</a></li>';
+            echo '<li><a href="creer-un-topic" title="créer un topic">Créer un topic</a></li>';
+            if ($_SESSION['role'] == 1) {
+                echo '<li><a href="admin" title="administration">Admin</a></li>';
+            }
+            echo '<li><a href="deconnexion" title="déconexion">Déconexion</a></li>';
         }
     ?>
     </ul>

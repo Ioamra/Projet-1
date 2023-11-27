@@ -37,7 +37,32 @@ function getComment(idTopic) {
     .then(data => {
         data = JSON.parse(data);
         console.log(data.data);
-        // ! Afficher les donner sur la page 
+
+        // Ajout des commentaires avec innerText pour eviter les faille XSS
+        let commentContainer = document.getElementById('comment-container');
+        data.data.forEach(element => {
+            let article = document.createElement('article');
+            article.className = 'comment';
+
+            let contentSection = document.createElement('section');
+            contentSection.className = 'comment-content';
+            contentSection.innerText = element.content_comment;
+            article.appendChild(contentSection);
+
+            let authorAndDateSection = document.createElement('section');
+            authorAndDateSection.className = 'comment-author-and-date';
+            
+            let authorInfo = document.createElement('i');
+            authorInfo.innerText = 'de ' + element.pseudo_user;
+            authorAndDateSection.appendChild(authorInfo);
+
+            let dateInfo = document.createElement('i');
+            dateInfo.innerText = element.date_comment;
+            authorAndDateSection.appendChild(dateInfo);
+
+            article.appendChild(authorAndDateSection);
+            commentContainer.appendChild(article);
+        });
         return;
     })
 }
