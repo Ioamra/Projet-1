@@ -36,8 +36,6 @@ function getComment(idTopic) {
     }).then(res => res.text())
     .then(data => {
         data = JSON.parse(data);
-        console.log(data.data);
-
         // Ajout des commentaires avec innerText pour eviter les faille XSS
         let commentContainer = document.getElementById('comment-container');
         data.data.forEach(element => {
