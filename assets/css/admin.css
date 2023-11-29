@@ -35,5 +35,9 @@ article .dropdown-content table tr th button, article .dropdown-content table tr
   height: 2em;
 }
 article .dropdown-content table tr .btn-delete {
-  max-width: 20px;
+  max-width: 22px;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }/*# sourceMappingURL=admin.css.map */
