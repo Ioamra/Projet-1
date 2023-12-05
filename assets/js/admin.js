@@ -1,4 +1,37 @@
-function getUsers(page, limit = 10) {
+var currentPage = 1;
+var nbPage;
+
+function getPageUsers() {
+    fetch('api.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            action: "get-nb-users"
+        })
+    }).then(res => res.text())
+    .then(data => {
+        data = JSON.parse(data);
+        if (data.success == true) {
+            nbPage = Math.ceil(data.data[0] / 10);
+            const pagingUser = document.querySelector('#paging-user');
+            let htmlPaging = "";
+            for (let numPage = 1; numPage < nbPage+1; numPage++) {
+                if (numPage == currentPage) {
+                    htmlPaging += `<button class="page-active"">${numPage}</button>`;
+                } else {
+                    htmlPaging += `<button onclick="getUsers(${numPage});">${numPage}</button>`;
+                }
+            }
+            pagingUser.innerHTML = htmlPaging;
+        }
+    })
+}
+
+function getUsers(page = 1, limit = 10) {
+    currentPage = page;
+    getPageUsers();
     const offset = (page - 1) * limit;
     fetch('api.php', {
         method: 'POST',
@@ -16,6 +49,7 @@ function getUsers(page, limit = 10) {
         if (data.success == true) {
             // Ajout des users dans le tbodyUsers avec innerText pour eviter les faille XSS
             const tbodyUsers = document.querySelector('#dropdown-content-user table tbody');
+            tbodyUsers.innerHTML = "";
             data.data.forEach(element => {
                 let line = document.createElement('tr');
 
@@ -67,7 +101,12 @@ function deleteUser(idUser) {
     .then(data => {
         data = JSON.parse(data);
         if (data.success == true) {
-            // ! SUPPRIMER L'ELEMENT DE LA PAGE
+            getUsers(currentPage);
         }
     })
+}
+
+function showAndHideDropdown(table) {
+    const dropdownContent = document.querySelector(`#dropdown-content-${table}`);
+    dropdownContent.classList.contains('show') ? dropdownContent.classList.remove('show') : dropdownContent.classList.add('show');
 }

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="assets/css/admin.css">
     <script src="assets/js/admin.js"></script>
 </head>
-<body onload="getUsers(1, 10)">
+<body onload="getUsers();">
     <?php
     require_once 'includes/bdd.php';
     require_once 'includes/nav.php';
@@ -19,7 +19,11 @@
     
     <section class="card-container">
         <article>
-            <button id="dropdown-btn-user" class="dropdown-btn">Utilisateur</button>
+            <button id="dropdown-btn-user" class="dropdown-btn" onclick="showAndHideDropdown('user')">
+                <img src="assets/svg/arrow-down.svg">
+                Utilisateur
+                <img src="assets/svg/arrow-down.svg">
+            </button>
             <section id="dropdown-content-user" class="dropdown-content">
                 <table>
                     <thead>
@@ -33,6 +37,7 @@
                     <tbody>
                     </tbody>
                 </table>
+                <section id="paging-user" class="paging"></section>
             </section>
         </article>
 

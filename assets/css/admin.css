@@ -8,6 +8,20 @@ article .dropdown-btn {
   background-color: transparent;
   border: 1px solid rgb(210, 210, 210);
   height: 2.5em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1em;
+}
+article .dropdown-btn img {
+  width: 1.5em;
+  height: 1.5em;
+}
+article .dropdown-content {
+  display: none;
+}
+article .dropdown-content.show {
+  display: block;
 }
 article .dropdown-content table {
   width: 100%;
@@ -40,4 +54,20 @@ article .dropdown-content table tr .btn-delete {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+article .paging {
+  display: flex;
+  justify-content: center;
+}
+article .paging button {
+  margin: 0.6em 0.2em 0 0.2em;
+  padding: 0.2em 0.4em;
+  cursor: pointer;
+  border: 1px solid rgb(170, 170, 170);
+}
+article .paging button.page-active {
+  background-color: transparent;
+  border: 1px solid rgb(170, 170, 170);
+  color: gray;
+  cursor: default;
 }/*# sourceMappingURL=admin.css.map */
