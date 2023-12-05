@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : jeu. 23 nov. 2023 à 15:18
+-- Généré le : mar. 05 déc. 2023 à 15:14
 -- Version du serveur : 8.0.31
 -- Version de PHP : 8.0.26
 
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   PRIMARY KEY (`id_comment`),
   KEY `id_topic` (`id_topic`),
   KEY `id_user` (`id_user`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `comment`
@@ -48,7 +48,10 @@ INSERT INTO `comment` (`id_comment`, `content_comment`, `date_comment`, `id_topi
 (2, 'Second commentaire !\nWahou !', '23/11/2023 15:16', 1, 1),
 (3, 'Troisime com', '23/11/2023 15:17', 1, 1),
 (4, 'Ca a l\'air trop bien !', '23/11/2023 15:18', 1, 1),
-(5, 'Encore un petit com pour test', '23/11/2023 15:55', 1, 1);
+(5, 'Encore un petit com pour test', '23/11/2023 15:55', 1, 1),
+(6, '<script>alert(\'XSS\')</script>', '24/11/2023 09:28', 1, 1),
+(7, '<p onload=\"alert(\'XSS\');\"></p>', '24/11/2023 09:30', 1, 1),
+(8, '<script>console.log(\'XSS\')</script>', '24/11/2023 09:32', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -91,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password_user` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `role_user` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_user`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `user`
@@ -100,7 +103,15 @@ CREATE TABLE IF NOT EXISTS `user` (
 INSERT INTO `user` (`id_user`, `mail_user`, `pseudo_user`, `password_user`, `role_user`) VALUES
 (1, 'admin@gmail.com', 'Admin', 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 1),
 (2, 'test@gmail.com', 'test', 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 0),
-(3, 'michel.dumas@gmail.com', 'Michel Dumas', 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 0);
+(4, 'jean.michel@gmail.com', 'JM', 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 0),
+(5, 'bouffeur.de.carambar@gmail.com', 'Bouffeur de cara', 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 0),
+(6, 'test2@gmail.com', 'test2', 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 0),
+(7, 'fouduroi@gmail.com', 'Le fou du roi', 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 0),
+(8, 'michel.dumas@gmail.com', 'Michel Dumas', 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 0),
+(9, 'guigui@gmail.com', 'guigui', 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 0),
+(10, 'tartuf@gmail.com', 'tartuf', 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 0),
+(11, 'fred.fada@gmail.com', 'fred le fada', 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 0),
+(12, 'cpasmoi@gmail.com', 'cpasmoi', 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 0);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

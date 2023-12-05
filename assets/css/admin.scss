@@ -1,5 +1,8 @@
 article {
     width: 100%;
+    &:not(:last-child) {
+        margin-bottom: 1.5em;
+    }
 
     .dropdown-btn {
         cursor: pointer;
@@ -12,6 +15,7 @@ article {
         justify-content: space-between;
         align-items: center;
         padding: 0 1em;
+        font-weight: 600;
 
         img {
             width: 1.5em;
@@ -58,7 +62,7 @@ article {
                     max-width: 22px;
                     padding: 2px;
                     display: flex;
-                    align-items: center;
+                    align-items: flex-start;
                     justify-content: center;
                 }
             }

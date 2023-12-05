@@ -14,3 +14,10 @@ function showAndHideBtnReturnTop() {
     let btnReturnTop = document.querySelector('#btn-return-top');
     scrollTop > 0 ? btnReturnTop.classList.add('show') : btnReturnTop.classList.remove('show');
 }
+
+// Fonctions
+
+function limitContent(text, len) {
+    console.log(text.length > len ? text.substring(0, len) + '...' : text)
+    return text.length > len ? text.substring(0, len) + '...' : text;
+}

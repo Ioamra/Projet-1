@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $req->execute();
             $data = $req->fetch();
             echo json_encode(['success' => true, 'data' => $data]);
-        // Récupération des utilisateur par page
+        // Récupération des utilisateurs par page
         } else if ($data->action == "get-users" && !empty($data->limit) && (!empty($data->offset) || $data->offset == 0)) {
             session_start();
             if ($_SESSION['role'] == 1) {
@@ -43,10 +43,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
                 echo json_encode(['success' => false]);
             }
-        // Suppression d'un utilisateur
+        // Suppression d'un utilisateur et de tous ses topics et commentaires
         } else if ($data->action == "delete-user" && !empty($data->id_user)) {
             session_start();
             if ($_SESSION['role'] == 1) {
+                $req = $bdd->prepare("DELETE FROM comment WHERE id_user = :id_user");
+                $req->bindParam(':id_user', $data->id_user, PDO::PARAM_STR);
+                $req->execute();
+                $req = $bdd->prepare("DELETE FROM topic WHERE id_user = :id_user");
+                $req->bindParam(':id_user', $data->id_user, PDO::PARAM_STR);
+                $req->execute();
                 $req = $bdd->prepare("DELETE FROM user WHERE id_user = :id_user");
                 $req->bindParam(':id_user', $data->id_user, PDO::PARAM_STR);
                 $req->execute();
@@ -54,6 +60,70 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
                 echo json_encode(['success' => false]);
             }
+        // Récupération du nombre de topics
+        } else if ($data->action == "get-nb-topics") {
+            $req = $bdd->prepare("SELECT COUNT(id_topic) FROM topic");
+            $req->execute();
+            $data = $req->fetch();
+            echo json_encode(['success' => true, 'data' => $data]);
+        // Récupération des topics par page
+        } else if ($data->action == "get-topics" && !empty($data->limit) && (!empty($data->offset) || $data->offset == 0)) {
+            session_start();
+            if ($_SESSION['role'] == 1) {
+                $req = $bdd->prepare("SELECT id_topic, title_topic, message_topic, date_topic, pseudo_user FROM topic 
+                                    INNER JOIN user ON topic.id_user = user.id_user LIMIT $data->limit OFFSET $data->offset");
+                $req->execute();
+                $data = $req->fetchAll(PDO::FETCH_ASSOC);
+                echo json_encode(['success' => true, 'data' => $data]);
+            } else {
+                echo json_encode(['success' => false]);
+            }
+        // Suppression d'un topic et de tous les commentaires assossier
+        } else if ($data->action == "delete-topic" && !empty($data->id_topic)) {
+            session_start();
+            if ($_SESSION['role'] == 1) {
+                $req = $bdd->prepare("DELETE FROM comment WHERE id_topic = :id_topic");
+                $req->bindParam(':id_topic', $data->id_topic, PDO::PARAM_STR);
+                $req->execute();
+                $req = $bdd->prepare("DELETE FROM topic WHERE id_topic = :id_topic");
+                $req->bindParam(':id_topic', $data->id_topic, PDO::PARAM_STR);
+                $req->execute();
+                echo json_encode(['success' => true]);
+            } else {
+                echo json_encode(['success' => false]);
+            }
+        // Récupération du nombre de commentaires
+        } else if ($data->action == "get-nb-comments") {
+            $req = $bdd->prepare("SELECT COUNT(id_comment) FROM comment");
+            $req->execute();
+            $data = $req->fetch();
+            echo json_encode(['success' => true, 'data' => $data]);
+        // Récupération des commentaires par page
+        } else if ($data->action == "get-comments" && !empty($data->limit) && (!empty($data->offset) || $data->offset == 0)) {
+            session_start();
+            if ($_SESSION['role'] == 1) {
+                $req = $bdd->prepare("SELECT id_comment, content_comment, date_comment, title_topic, pseudo_user FROM comment 
+                                    INNER JOIN topic ON comment.id_topic = topic.id_topic INNER JOIN user ON comment.id_user = user.id_user 
+                                    LIMIT $data->limit OFFSET $data->offset");
+                $req->execute();
+                $data = $req->fetchAll(PDO::FETCH_ASSOC);
+                echo json_encode(['success' => true, 'data' => $data]);
+            } else {
+                echo json_encode(['success' => false]);
+            }
+        // Suppression d'un commentaire
+        } else if ($data->action == "delete-comment" && !empty($data->id_comment)) {
+            session_start();
+            if ($_SESSION['role'] == 1) {
+                $req = $bdd->prepare("DELETE FROM comment WHERE id_comment = :id_comment");
+                $req->bindParam(':id_comment', $data->id_comment, PDO::PARAM_STR);
+                $req->execute();
+                echo json_encode(['success' => true]);
+            } else {
+                echo json_encode(['success' => false]);
+            }
+
+
         } else {
             echo json_encode(['success' => false]);
         }
