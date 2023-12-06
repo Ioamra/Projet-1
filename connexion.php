@@ -38,7 +38,7 @@
         <form method="post">
             <h2 class="mt-0">Connexion</h2>
             <label class="w-100 d-block" for="mail">Mail</label>
-            <input class="w-100" id="mail" type="email" name="mail" required>
+            <input class="w-100" id="mail" type="email" name="mail" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}" required>
             <label class="w-100 d-block" for="password">Mot de passe</label>
             <input class="w-100" id="password" type="password" name="password" required>
             <button class="w-100" type="submit" name="submit">Se connecter</button>
