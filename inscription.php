@@ -21,7 +21,7 @@
         $validation = true;
 
         // Verif que pseudo n'a pas plus de 16 caractères (limite bdd)
-        if (strlen($pseudo) < 3 && strlen($pseudo) > 16) {
+        if (strlen($pseudo) < 3 || strlen($pseudo) > 16) {
             $validation = False;
             $mes_error = "<br/>Le pseudo doit avoir entre 3 et 16 caractères.";
             $pseudo = "";
