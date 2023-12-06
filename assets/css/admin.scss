@@ -55,6 +55,14 @@ article {
                         background-color: transparent;
                         border: 1px solid rgb(210, 210, 210);
                         height: 2em;
+
+                        &.is-admin {
+                            background-color: lightgreen;
+                        }
+
+                        &.is-user {
+                            background-color: lightblue;
+                        }
                     }
                 }
                 
@@ -64,6 +72,10 @@ article {
                     display: flex;
                     align-items: flex-start;
                     justify-content: center;
+
+                    img {
+                        cursor: pointer;
+                    }
                 }
             }
         }

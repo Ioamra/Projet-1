@@ -60,6 +60,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
                 echo json_encode(['success' => false]);
             }
+        // Modification du role d'un utilisateur, admin devient user et user devient admin
+        } else if ($data->action == "change-user-role" && !empty($data->id_user) && (!empty($data->role_user) || $data->role_user == 0)) {
+            session_start();
+            if ($_SESSION['role'] == 1) {
+                $req = $bdd->prepare("UPDATE user SET role_user = :role_user WHERE id_user = :id_user");
+                $newRole = !$data->role_user;
+                $req->bindParam(':role_user', $newRole, PDO::PARAM_INT);
+                $req->bindParam(':id_user', $data->id_user, PDO::PARAM_INT);
+                $req->execute();
+                echo json_encode(['success' => true]);
+            } else {
+                echo json_encode(['success' => false]);
+            }
         // Récupération du nombre de topics
         } else if ($data->action == "get-nb-topics") {
             $req = $bdd->prepare("SELECT COUNT(id_topic) FROM topic");

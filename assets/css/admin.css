@@ -52,12 +52,21 @@ article .dropdown-content table tr th button, article .dropdown-content table tr
   border: 1px solid rgb(210, 210, 210);
   height: 2em;
 }
+article .dropdown-content table tr th button.is-admin, article .dropdown-content table tr td button.is-admin {
+  background-color: lightgreen;
+}
+article .dropdown-content table tr th button.is-user, article .dropdown-content table tr td button.is-user {
+  background-color: lightblue;
+}
 article .dropdown-content table tr .btn-delete {
   max-width: 22px;
   padding: 2px;
   display: flex;
   align-items: flex-start;
   justify-content: center;
+}
+article .dropdown-content table tr .btn-delete img {
+  cursor: pointer;
 }
 article .paging {
   display: flex;

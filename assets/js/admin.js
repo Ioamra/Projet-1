@@ -65,9 +65,13 @@ function getUsers(page = 1) {
                 let role = document.createElement('td');
                 let roleButton = document.createElement('button');
                 if (element.role_user == 1) {
-                    roleButton.innerText = 'Admin'
+                    roleButton.className = 'is-admin';
+                    roleButton.innerText = 'Admin';
+                    roleButton.setAttribute('onclick', `changeUserRole(${element.id_user}, ${element.role_user})`);
                 } else {
-                    roleButton.innerText = 'Utilisateur'
+                    roleButton.className = 'is-user';
+                    roleButton.innerText = 'Utilisateur';
+                    roleButton.setAttribute('onclick', `changeUserRole(${element.id_user}, ${element.role_user})`);
                 }
                 role.appendChild(roleButton);
                 line.appendChild(role);
@@ -105,6 +109,26 @@ function deleteUser(idUser) {
             getUsers(currentPageUser);
             getTopics(currentPageTopic);
             getComments(currentPageComment);
+        }
+    })
+}
+
+function changeUserRole(idUser, roleUser) {
+    fetch('api.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            action: "change-user-role",
+            id_user: idUser,
+            role_user: roleUser
+        })
+    }).then(res => res.text())
+    .then(data => {
+        data = JSON.parse(data);
+        if (data.success == true) {
+            getUsers(currentPageUser);
         }
     })
 }
@@ -202,7 +226,7 @@ function deleteTopic(idTopic) {
         },
         body: JSON.stringify({
             action: "delete-topic",
-            id_Topic: idTopic
+            id_topic: idTopic
         })
     }).then(res => res.text())
     .then(data => {
@@ -307,7 +331,7 @@ function deleteComment(idComment) {
         },
         body: JSON.stringify({
             action: "delete-comment",
-            id_Comment: idComment
+            id_comment: idComment
         })
     }).then(res => res.text())
     .then(data => {
