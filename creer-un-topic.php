@@ -43,7 +43,7 @@
     <form method="post" class="card-container">
         <h2>Creer un nouveau topic</h2>
         <label for="title">Titre</label>
-        <input id="title" name="title" type="text" value="<?php if (isset($title)) {echo $title;} ?>" required>
+        <input id="title" name="title" type="text" value="<?php if (isset($title)) {echo $title;} ?>" pattern="{0,255}" required>
         <label for="message">Message</label>
         <textarea id="message" name="message" rows="15" value="<?php if (isset($message)) {echo $message;} ?>" required></textarea>
         <button type="submit" name="submit">Valider</button>
