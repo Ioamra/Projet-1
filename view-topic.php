@@ -26,11 +26,11 @@
 
     <section class="card-container">
         <article class="topic">
-            <h3 class="topic-title"><?=htmlspecialchars($topic['title_topic'])?></h3>
-            <section class="topic-content"><?=htmlspecialchars($topic['message_topic'])?></section>
+            <h3 class="topic-title"><?=nl2br(strip_tags($topic['title_topic']))?></h3>
+            <section class="topic-content"><?=nl2br(strip_tags($topic['message_topic']))?></section>
             <section class="topic-author-and-date">
-                <i>de <?=htmlspecialchars($topic['pseudo_user'])?></i>
-                <i><?=htmlspecialchars(formatDateDiff($topic['date_topic']))?></i>
+                <i>de <?=nl2br(strip_tags($topic['pseudo_user']))?></i>
+                <i><?=nl2br(strip_tags(formatDateDiff($topic['date_topic'])))?></i>
             </section>
         </article>
         <section class="add-comment">

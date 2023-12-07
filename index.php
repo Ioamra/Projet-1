@@ -32,8 +32,8 @@
     ?>
         <article class="topic">
             <a href="view-topic.php?id=<?=$li['id_topic']?>">
-                <h3 class="topic-title"><?=limitContent($li['title_topic'], 100)?></h3>
-                <section class="topic-content"><?=limitContent($li['message_topic'], 200)?></section>
+                <h3 class="topic-title"><?=nl2br(limitContent(strip_tags($li['title_topic']), 100))?></h3>
+                <section class="topic-content"><?=nl2br(limitContent(strip_tags($li['message_topic']), 200))?></section>
                 <section class="topic-author-and-date">
                     <i>de <?=$li['pseudo_user']?></i>
                     <i><?=formatDateDiff($li['date_topic'])?></i>
