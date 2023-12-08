@@ -1,16 +1,5 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <title>Connexion</title>
-    <?php require_once 'includes/head.php'; ?>
-    <meta name="description" content="Connectez-vous à notre forum pour participer à des discussions passionnantes, poser des questions, et partager vos connaissances avec la communauté.">
-    <link rel="stylesheet" href="assets/css/login.css">
-</head>
-<body>
-    <?php 
+<?php 
     require_once 'includes/bdd.php'; 
-    require_once 'includes/nav.php';
-    require_once 'includes/btn-return-top.php';
 
     $mes_error = "";
     if(isset($_POST['submit'])){
@@ -22,7 +11,7 @@
         $req->bindParam('password', $password, PDO::PARAM_STR);
         $req->execute();
         
-        if($req->rowCount() == 1){
+        if ($req->rowCount() == 1) {
             $data_user = $req->fetch(\PDO::FETCH_OBJ);
     
             session_start();
@@ -33,6 +22,19 @@
             $mes_error = "Identifiant ou mot de passe invalide.";
         }
     }   
+?>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Connexion</title>
+    <?php require_once 'includes/head.php'; ?>
+    <meta name="description" content="Connectez-vous à notre forum pour participer à des discussions passionnantes, poser des questions, et partager vos connaissances avec la communauté.">
+    <link rel="stylesheet" href="assets/css/login.css">
+</head>
+<body>
+    <?php 
+    require_once 'includes/nav.php';
+    require_once 'includes/btn-return-top.php'; 
     ?>
     <main>
         <section class="card-container">

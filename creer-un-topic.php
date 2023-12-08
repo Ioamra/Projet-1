@@ -1,3 +1,7 @@
+<?php
+session_start();
+empty($_SESSION['id']) && header("location:connexion.php");
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -8,8 +12,6 @@
 </head>
 <body>
     <?php
-    session_start();
-    empty($_SESSION['id']) && header("location:connexion.php");
     require_once 'includes/bdd.php';
     require_once 'includes/nav.php';
     require_once 'includes/btn-return-top.php';
