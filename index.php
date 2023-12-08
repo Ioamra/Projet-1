@@ -52,7 +52,7 @@
                 if ($i == $page) {
                     echo '<button class="page-active">'.$i.'</button>';
                 } else {
-                    echo '<button><a href="index.php?page='.$i.'">'.$i.'</a></button>';
+                    echo '<button onclick="window.location.href='."'".'index.php?page='.$i."'".'">'.$i.'</button>';
                 }
             }
             ?>
