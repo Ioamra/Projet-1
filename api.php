@@ -43,13 +43,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
                 echo json_encode(['success' => false]);
             }
-        // Suppression d'un utilisateur et de tous ses topics et commentaires
+        // Suppression d'un utilisateur et de tous ses topics et commentaires et des commentaires des topics supprimé
         } else if ($data->action == "delete-user" && !empty($data->id_user)) {
             session_start();
             if ($_SESSION['role'] == 1) {
                 $req = $bdd->prepare("DELETE FROM comment WHERE id_user = :id_user");
                 $req->bindParam(':id_user', $data->id_user, PDO::PARAM_STR);
                 $req->execute();
+                $req = $bdd->prepare("SELECT id_topic FROM topic WHERE id_user = :id_user");
+                $req->bindParam(':id_user', $data->id_user, PDO::PARAM_STR);
+                $req->execute();
+                $list_id_topic = $req->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($list_id_topic as $key => $value) {
+                    $req = $bdd->prepare("DELETE FROM comment WHERE id_topic = :id_topic");
+                    $req->bindParam(':id_topic', $list_id_topic[$key], PDO::PARAM_STR);
+                    $req->execute();
+                }
                 $req = $bdd->prepare("DELETE FROM topic WHERE id_user = :id_user");
                 $req->bindParam(':id_user', $data->id_user, PDO::PARAM_STR);
                 $req->execute();
