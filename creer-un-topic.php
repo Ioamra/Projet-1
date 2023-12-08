@@ -6,7 +6,7 @@ empty($_SESSION['id']) && header("location:connexion.php");
 <html lang="fr">
 <head>
     <title>Page d'acceuil</title>
-    <meta name="description" content="Page d'acceuil du forum">
+    <meta name="description" content="Créez votre topic sur Natter : partagez vos idées et lancez des discussions captivantes en quelques clics !">
     <?php require_once 'includes/head.php'; ?>
     <link rel="stylesheet" href="assets/css/creer-un-topic.css">
 </head>
