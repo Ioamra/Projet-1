@@ -21,7 +21,7 @@
             if ($_SESSION['role'] == 1) {
                 echo '<li><a href="admin.php" title="administration">Admin</a></li>';
             }
-            echo '<li><a href="deconnexion.php" title="déconexion">Déconexion</a></li>';
+            echo '<li><a href="deconnexion.php" title="déconnexion">Déconnexion</a></li>';
         }
     ?>
     </ul>

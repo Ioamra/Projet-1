@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Récupération des commentaires d'un topic
         } else if ($data->action == "get-comments" && !empty($data->id_topic)) {
             $req = $bdd->prepare('SELECT content_comment, date_comment, pseudo_user FROM comment INNER JOIN user ON comment.id_user = user.id_user 
-                                WHERE id_topic = '.$data->id_topic.' ORDER BY STR_TO_DATE(date_comment, "%d/%m/%Y %H:%i") ASC');
+                                WHERE id_topic = '.$data->id_topic.' ORDER BY id_comment');
             $req->execute();
             $data = $req->fetchAll(PDO::FETCH_ASSOC);
             for ($i=0; $i < count($data); $i++) { 
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else if ($data->action == "get-users" && !empty($data->limit) && (!empty($data->offset) || $data->offset == 0)) {
             session_start();
             if ($_SESSION['role'] == 1) {
-                $req = $bdd->prepare("SELECT id_user, mail_user, pseudo_user, role_user FROM user LIMIT $data->limit OFFSET $data->offset");
+                $req = $bdd->prepare("SELECT id_user, mail_user, pseudo_user, role_user FROM user ORDER BY id_user LIMIT $data->limit OFFSET $data->offset");
                 $req->execute();
                 $data = $req->fetchAll(PDO::FETCH_ASSOC);
                 echo json_encode(['success' => true, 'data' => $data]);
@@ -92,8 +92,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else if ($data->action == "get-topics" && !empty($data->limit) && (!empty($data->offset) || $data->offset == 0)) {
             session_start();
             if ($_SESSION['role'] == 1) {
-                $req = $bdd->prepare("SELECT id_topic, title_topic, message_topic, date_topic, pseudo_user FROM topic 
-                                    INNER JOIN user ON topic.id_user = user.id_user LIMIT $data->limit OFFSET $data->offset");
+                $req = $bdd->prepare("SELECT id_topic, title_topic, message_topic, date_topic, pseudo_user FROM topic
+                                    INNER JOIN user ON topic.id_user = user.id_user ORDER BY id_topic LIMIT $data->limit OFFSET $data->offset");
                 $req->execute();
                 $data = $req->fetchAll(PDO::FETCH_ASSOC);
                 echo json_encode(['success' => true, 'data' => $data]);
@@ -124,9 +124,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else if ($data->action == "get-comments" && !empty($data->limit) && (!empty($data->offset) || $data->offset == 0)) {
             session_start();
             if ($_SESSION['role'] == 1) {
-                $req = $bdd->prepare("SELECT id_comment, content_comment, date_comment, title_topic, pseudo_user FROM comment 
+                $req = $bdd->prepare("SELECT id_comment, content_comment, date_comment, title_topic, pseudo_user FROM comment
                                     INNER JOIN topic ON comment.id_topic = topic.id_topic INNER JOIN user ON comment.id_user = user.id_user 
-                                    LIMIT $data->limit OFFSET $data->offset");
+                                    ORDER BY id_comment LIMIT $data->limit OFFSET $data->offset");
                 $req->execute();
                 $data = $req->fetchAll(PDO::FETCH_ASSOC);
                 echo json_encode(['success' => true, 'data' => $data]);

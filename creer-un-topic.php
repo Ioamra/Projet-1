@@ -1,6 +1,35 @@
 <?php
 session_start();
 empty($_SESSION['id']) && header("location:connexion.php");
+
+require_once 'includes/bdd.php';
+$mes_error = "";
+if (isset($_POST['submit'])) {
+    $title = $_POST['title'];
+    $message = $_POST['message'];
+
+    $validation = true;
+
+    // Verif que le titre ne fait pas plus de 255 caractères (limite bdd)
+    if (strlen($title) > 255) {
+        $validation = False;
+        $mes_error = "<br/>Le titre ne peut pas avoir plus de 255 caractères.";
+    }
+    
+    if ($validation) {
+        date_default_timezone_set('Europe/Paris');
+        $date = date('d/m/Y H:i');
+        
+        $req = $bdd->prepare("INSERT INTO topic (title_topic, message_topic, date_topic, id_user) VALUES (:title, :message, :date, :id_user)");
+        $req->bindParam(':title', $title, PDO::PARAM_STR);
+        $req->bindParam(':message', $message, PDO::PARAM_STR);
+        $req->bindParam(':date', $date, PDO::PARAM_STR);
+        $req->bindParam(':id_user', $_SESSION['id'], PDO::PARAM_INT);
+        $req->execute();
+        $title = "";
+        $message = "";
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -12,35 +41,8 @@ empty($_SESSION['id']) && header("location:connexion.php");
 </head>
 <body>
     <?php
-    require_once 'includes/bdd.php';
     require_once 'includes/nav.php';
     require_once 'includes/btn-return-top.php';
-
-    $mes_error = "";
-    if (isset($_POST['submit'])) {
-        $title = $_POST['title'];
-        $message = $_POST['message'];
-
-        $validation = true;
-
-        // Verif que le titre ne fait pas plus de 255 caractères (limite bdd)
-        if (strlen($title) > 255) {
-            $validation = False;
-            $mes_error = "<br/>Le titre ne peut pas avoir plus de 255 caractères.";
-        }
-        
-        if ($validation) {
-            date_default_timezone_set('Europe/Paris');
-            $date = date('d/m/Y H:i');
-            $req = $bdd->prepare("INSERT INTO topic (title_topic, message_topic, date_topic, id_user) VALUES (:title, :message, :date, :id_user)");
-            $req->bindParam(':title', $title, PDO::PARAM_STR);
-            $req->bindParam(':message', $message, PDO::PARAM_STR);
-            $req->bindParam(':date', $date, PDO::PARAM_STR);
-            $req->bindParam(':id_user', $_SESSION['id'], PDO::PARAM_INT);
-            $req->execute();
-            header('location:index.php');
-        }
-    }
     ?>
     <main>
         <form method="post" class="card-container">
