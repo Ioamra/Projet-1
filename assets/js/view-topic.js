@@ -16,8 +16,7 @@ function addComment(idTopic, idUser) {
     .then(data => {
         data = JSON.parse(data);
         if (data.success == true) {
-            textarea.value = "";
-            // ! Ajouter le nouveau commentaire sur la page
+            getComment(idTopic);
         }
         return;
     });
@@ -38,6 +37,7 @@ function getComment(idTopic) {
         data = JSON.parse(data);
         // Ajout des commentaires avec innerText pour eviter les faille XSS
         let commentContainer = document.getElementById('comment-container');
+        commentContainer.innerHTML = "";
         data.data.forEach(element => {
             let article = document.createElement('article');
             article.className = 'comment';
