@@ -75,21 +75,24 @@
     
     
     ?>
-    <section class="card-container">
-        <form method="post">
-            <h2 class="mt-0">Inscription</h2>
-            <label for="mail">Mail</label>
-            <input id="mail" type="email" name="mail" value="<?php if (isset($mail)) {echo $mail;} ?>" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}" required>
-            <label for="pseudo">Pseudo</label>
-            <input id="pseudo" type="text" name="pseudo" value="<?php if (isset($pseudo)) {echo $pseudo;} ?>" pattern="{3, 16}" required>
-            <label for="password">Mot de passe</label>
-            <input id="password" type="password" name="password" required>
-            <label for="password-confirm">Confirmation du mot de passe</label>
-            <input id="password-confirm" type="password" name="password-confirm" required>
-            <button type="submit" name="submit">S'inscrire</button>
-            <a href="connexion.php">Vous avez un compte, connectez-vous !</a>
-            <p class="error"><?=$mes_error?></p>
-        </form>
-    </section>
+    <main>
+        <section class="card-container">
+            <form method="post">
+                <h2 class="mt-0">Inscription</h2>
+                <label for="mail">Mail</label>
+                <input id="mail" type="email" name="mail" value="<?php if (isset($mail)) {echo $mail;} ?>" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}" required>
+                <label for="pseudo">Pseudo</label>
+                <input id="pseudo" type="text" name="pseudo" value="<?php if (isset($pseudo)) {echo $pseudo;} ?>" pattern="{3, 16}" required>
+                <label for="password">Mot de passe</label>
+                <input id="password" type="password" name="password" required>
+                <label for="password-confirm">Confirmation du mot de passe</label>
+                <input id="password-confirm" type="password" name="password-confirm" required>
+                <button type="submit" name="submit">S'inscrire</button>
+                <a href="connexion.php">Vous avez un compte, connectez-vous !</a>
+                <p class="error"><?=$mes_error?></p>
+            </form>
+        </section>
+    </main>
+    <?php require_once "includes/footer.php" ?>
 </body>
 </html>

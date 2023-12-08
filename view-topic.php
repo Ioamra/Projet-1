@@ -24,23 +24,25 @@
     require_once 'includes/btn-return-top.php';
     ?>
 
-    <section class="card-container">
-        <article class="topic">
-            <h3 class="topic-title"><?=nl2br(strip_tags($topic['title_topic']))?></h3>
-            <section class="topic-content"><?=nl2br(strip_tags($topic['message_topic']))?></section>
-            <section class="topic-author-and-date">
-                <i>de <?=nl2br(strip_tags($topic['pseudo_user']))?></i>
-                <i><?=nl2br(strip_tags(formatDateDiff($topic['date_topic'])))?></i>
+    <main>
+        <section class="card-container">
+            <article class="topic">
+                <h3 class="topic-title"><?=nl2br(strip_tags($topic['title_topic']))?></h3>
+                <section class="topic-content"><?=nl2br(strip_tags($topic['message_topic']))?></section>
+                <section class="topic-author-and-date">
+                    <i>de <?=nl2br(strip_tags($topic['pseudo_user']))?></i>
+                    <i><?=nl2br(strip_tags(formatDateDiff($topic['date_topic'])))?></i>
+                </section>
+            </article>
+            <section class="add-comment">
+                <textarea name="content-comment" id="content-comment" rows="10" placeholder="Ajouter un commentaire"></textarea>
+                <section class="container-btn-submit">
+                    <button name="submit-comment" onclick="addComment(<?=$_GET['id']?>, <?=$_SESSION['id']?>)">Ajouter un commentaire</button>
+                </section>
             </section>
-        </article>
-        <section class="add-comment">
-            <textarea name="content-comment" id="content-comment" rows="10" placeholder="Ajouter un commentaire"></textarea>
-            <section class="container-btn-submit">
-                <button name="submit-comment" onclick="addComment(<?=$_GET['id']?>, <?=$_SESSION['id']?>)">Ajouter un commentaire</button>
-            </section>
+            <section id="comment-container"></section>
         </section>
-        <section id="comment-container"></section>
-    </section>
-
+    </main>
+    <?php require_once "includes/footer.php" ?>
 </body>
 </html>

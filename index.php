@@ -29,34 +29,38 @@
     $list_topic = $req->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
-    <section class="card-container">
-    <?php
-        foreach ($list_topic as $li) {
-    ?>
-        <article class="topic">
-            <a href="view-topic.php?id=<?=$li['id_topic']?>">
-                <h3 class="topic-title"><?=nl2br(limitContent(strip_tags($li['title_topic']), 100))?></h3>
-                <section class="topic-content"><?=nl2br(limitContent(strip_tags($li['message_topic']), 200))?></section>
-                <section class="topic-author-and-date">
-                    <i>de <?=$li['pseudo_user']?></i>
-                    <i><?=formatDateDiff($li['date_topic'])?></i>
-                </section>
-            </a>
-        </article>
-    <?php
-        }
-    ?>
-        <section id="paging-user" class="paging">
-            <?php
-            for ($i=1; $i < $nb_page+1; $i++) { 
-                if ($i == $page) {
-                    echo '<button class="page-active">'.$i.'</button>';
-                } else {
-                    echo '<button onclick="window.location.href='."'".'index.php?page='.$i."'".'">'.$i.'</button>';
-                }
+    <main>
+        <section class="card-container">
+        <?php
+            foreach ($list_topic as $li) {
+        ?>
+            <article class="topic">
+                <a href="view-topic.php?id=<?=$li['id_topic']?>">
+                    <h3 class="topic-title"><?=nl2br(limitContent(strip_tags($li['title_topic']), 100))?></h3>
+                    <section class="topic-content"><?=nl2br(limitContent(strip_tags($li['message_topic']), 200))?></section>
+                    <section class="topic-author-and-date">
+                        <i>de <?=$li['pseudo_user']?></i>
+                        <i><?=formatDateDiff($li['date_topic'])?></i>
+                    </section>
+                </a>
+            </article>
+        <?php
             }
-            ?>
+        ?>
+
+            <section id="paging-user" class="paging">
+                <?php
+                for ($i=1; $i < $nb_page+1; $i++) { 
+                    if ($i == $page) {
+                        echo '<button class="page-active">'.$i.'</button>';
+                    } else {
+                        echo '<button onclick="window.location.href='."'".'index.php?page='.$i."'".'">'.$i.'</button>';
+                    }
+                }
+                ?>
+            </section>
         </section>
-    </section>
+    </main>
+    <?php require_once "includes/footer.php" ?>
 </body>
 </html>
