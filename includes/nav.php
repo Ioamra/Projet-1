@@ -2,7 +2,7 @@
     <section class="nav-header">
         <section class="nav-logo">
             <a href="index.php">
-                <img src="assets/img/logo.jpg" alt="logo">
+                <img src="assets/img/logo.png" alt="logo">
             </a>
         </section>
         <h1 class="nav-title">Nom du site</h1>  
