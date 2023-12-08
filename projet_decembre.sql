@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mar. 05 déc. 2023 à 15:14
--- Version du serveur : 8.0.31
--- Version de PHP : 8.0.26
+-- Généré le : ven. 08 déc. 2023 à 18:06
+-- Version du serveur : 8.2.0
+-- Version de PHP : 8.2.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -37,21 +37,7 @@ CREATE TABLE IF NOT EXISTS `comment` (
   PRIMARY KEY (`id_comment`),
   KEY `id_topic` (`id_topic`),
   KEY `id_user` (`id_user`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Déchargement des données de la table `comment`
---
-
-INSERT INTO `comment` (`id_comment`, `content_comment`, `date_comment`, `id_topic`, `id_user`) VALUES
-(1, 'Premier commentaire !', '23/11/2023 15:00', 1, 1),
-(2, 'Second commentaire !\nWahou !', '23/11/2023 15:16', 1, 1),
-(3, 'Troisime com', '23/11/2023 15:17', 1, 1),
-(4, 'Ca a l\'air trop bien !', '23/11/2023 15:18', 1, 1),
-(5, 'Encore un petit com pour test', '23/11/2023 15:55', 1, 1),
-(6, '<script>alert(\'XSS\')</script>', '24/11/2023 09:28', 1, 1),
-(7, '<p onload=\"alert(\'XSS\');\"></p>', '24/11/2023 09:30', 1, 1),
-(8, '<script>console.log(\'XSS\')</script>', '24/11/2023 09:32', 1, 1);
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -68,17 +54,14 @@ CREATE TABLE IF NOT EXISTS `topic` (
   `id_user` int DEFAULT NULL,
   PRIMARY KEY (`id_topic`),
   KEY `id_user` (`id_user`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `topic`
 --
 
 INSERT INTO `topic` (`id_topic`, `title_topic`, `message_topic`, `date_topic`, `id_user`) VALUES
-(1, 'Premier topic', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos explicabo nulla ab quas dolorum pariatur reprehenderit autem omnis doloribus doloremque quis eligendi eius laboriosam delectus dicta accusantium dolorem architecto asperiores natus, suscipit modi corporis sunt. Praesentium ratione omnis a sint nemo eaque alias vero blanditiis voluptates, ipsa perspiciatis neque amet nam non eum qui laudantium unde eveniet ex doloribus sunt. Excepturi molestias tenetur, magni suscipit assumenda harum hic enim voluptas nihil culpa! Error assumenda nobis, mollitia quas nostrum voluptates ducimus repellat odio, ut architecto adipisci voluptas earum? Quibusdam harum mollitia quis, ad ex quo laboriosam exercitationem temporibus, tenetur rerum consequatur.', '22/11/2023 13:47', 1),
-(2, 'Second topic', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos explicabo nulla ab quas dolorum pariatur reprehenderit autem omnis doloribus doloremque quis eligendi eius laboriosam delectus dicta accusantium dolorem architecto asperiores natus, suscipit modi corporis sunt. Praesentium ratione omnis a sint nemo eaque alias vero blanditiis voluptates, ipsa perspiciatis neque amet nam non eum qui laudantium unde eveniet ex doloribus sunt. Excepturi molestias tenetur, magni suscipit assumenda harum hic enim voluptas nihil culpa! Error assumenda nobis, mollitia quas nostrum voluptates ducimus repellat odio, ut architecto adipisci voluptas earum? Quibusdam harum mollitia quis, ad ex quo laboriosam exercitationem temporibus, tenetur rerum consequatur.', '22/11/2023 13:48', 1),
-(3, 'Nouveau topic super intéressant, ca parle de lorem, de lorem et de lorem, c\'est incroyable !', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores, impedit ut dolore totam magnam labore ratione enim voluptatibus natus assumenda perferendis consectetur commodi vero voluptates doloremque quas odio quia architecto magni! Beatae non nobis vitae reprehenderit voluptates quisquam sequi delectus id nam temporibus inventore eum quasi esse, nesciunt ex. Quam eum commodi amet impedit velit voluptas, nam quos fuga sit tenetur voluptate temporibus, pariatur iure voluptates sapiente. Ab praesentium excepturi alias, odio nesciunt sequi et illo itaque optio distinctio nihil similique veritatis, aspernatur amet voluptatem mollitia modi quos nam beatae eveniet iure perspiciatis ex. Exercitationem eum ea voluptates fugiat, ipsam fuga ex, ullam consectetur dolor vitae libero dolores itaque soluta explicabo dolorem. Assumenda aliquid molestias minima quibusdam aspernatur delectus est deserunt, velit excepturi enim cum numquam aut natus accusamus optio quo corrupti ipsum laboriosam nemo officia eum sit voluptas consequuntur. Odio hic dolorem repellat, consequuntur minus quo! Perferendis asperiores, facere omnis est adipisci sed vel libero accusantium dicta laboriosam iure, doloribus reprehenderit nesciunt sunt explicabo consectetur ipsa impedit eligendi, doloremque cum? Ratione explicabo, porro cumque, quia aliquam enim, tempore debitis vel repudiandae aspernatur nesciunt rem eligendi iste tenetur commodi tempora earum. Minus adipisci vero tenetur natus ipsum possimus illum eveniet.', '23/11/2023 11:34', 1),
-(4, 'Nouveau topic super intéressant, ca parle de lorem, de lorem et de lorem, c\'est incroyable !', 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores, impedit ut dolore totam magnam labore ratione enim voluptatibus natus assumenda perferendis consectetur commodi vero voluptates doloremque quas odio quia architecto magni! Beatae non nobis vitae reprehenderit voluptates quisquam sequi delectus id nam temporibus inventore eum quasi esse, nesciunt ex. Quam eum commodi amet impedit velit voluptas, nam quos fuga sit tenetur voluptate temporibus, pariatur iure voluptates sapiente. Ab praesentium excepturi alias, odio nesciunt sequi et illo itaque optio distinctio nihil similique veritatis, aspernatur amet voluptatem mollitia modi quos nam beatae eveniet iure perspiciatis ex. Exercitationem eum ea voluptates fugiat, ipsam fuga ex, ullam consectetur dolor vitae libero dolores itaque soluta explicabo dolorem. Assumenda aliquid molestias minima quibusdam aspernatur delectus est deserunt, velit excepturi enim cum numquam aut natus accusamus optio quo corrupti ipsum laboriosam nemo officia eum sit voluptas consequuntur. Odio hic dolorem repellat, consequuntur minus quo! Perferendis asperiores, facere omnis est adipisci sed vel libero accusantium dicta laboriosam iure, doloribus reprehenderit nesciunt sunt explicabo consectetur ipsa impedit eligendi, doloremque cum? Ratione explicabo, porro cumque, quia aliquam enim, tempore debitis vel repudiandae aspernatur nesciunt rem eligendi iste tenetur commodi tempora earum. Minus adipisci vero tenetur natus ipsum possimus illum eveniet.', '23/11/2023 11:36', 1);
+(1, 'Hobbies créatifs : Partagez vos projets et inspirez la communauté !', 'Salut à tous les créatifs de la communauté !\r\n\r\nQue vous soyez passionné de peinture, de couture, de bricolage, de photographie, ou de tout autre hobby créatif, ce fil est dédié à la célébration de nos projets et à l\'inspiration mutuelle.\r\n\r\nJe commence en présentant mon dernier projet de création de bijoux faits main, mais j\'ai hâte de découvrir ce que vous avez entrepris récemment. Qu\'il s\'agisse d\'une œuvre d\'art qui vous a demandé des heures de concentration, d\'une nouvelle compétence que vous avez acquise, ou même d\'une idée que vous avez en tête et que vous souhaitez discuter, partagez-le ici !\r\n\r\nN\'oubliez pas de mentionner les défis que vous avez rencontrés et comment vous les avez surmontés, ainsi que les ressources qui vous ont inspiré. Nous sommes tous différents dans nos passions, mais je suis convaincu qu\'il y a quelque chose d\'extraordinaire dans chaque projet.\r\n\r\nAlors, qu\'est-ce qui occupe vos moments créatifs ces jours-ci ? Partagez vos réalisations, échangez des conseils et célébrons ensemble la diversité de nos talents créatifs !\r\n\r\n\r\n\r\nN\'hésitez pas à personnaliser le post en fonction de vos propres passions créatives !', '08/12/2023 19:05', 1);
 
 -- --------------------------------------------------------
 
@@ -94,24 +77,14 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password_user` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `role_user` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_user`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `user`
 --
 
 INSERT INTO `user` (`id_user`, `mail_user`, `pseudo_user`, `password_user`, `role_user`) VALUES
-(1, 'admin@gmail.com', 'Admin', 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 1),
-(2, 'test@gmail.com', 'test', 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 0),
-(4, 'jean.michel@gmail.com', 'JM', 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 0),
-(5, 'bouffeur.de.carambar@gmail.com', 'Bouffeur de cara', 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 0),
-(6, 'test2@gmail.com', 'test2', 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 0),
-(7, 'fouduroi@gmail.com', 'Le fou du roi', 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 0),
-(8, 'michel.dumas@gmail.com', 'Michel Dumas', 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 0),
-(9, 'guigui@gmail.com', 'guigui', 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 0),
-(10, 'tartuf@gmail.com', 'tartuf', 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 0),
-(11, 'fred.fada@gmail.com', 'fred le fada', 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 0),
-(12, 'cpasmoi@gmail.com', 'cpasmoi', 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 0);
+(1, 'admin@gmail.com', 'admin', 'f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9', 0);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
