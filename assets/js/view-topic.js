@@ -16,6 +16,7 @@ function addComment(idTopic, idUser) {
     .then(data => {
         data = JSON.parse(data);
         if (data.success == true) {
+            textarea.value = "";
             getComment(idTopic);
         }
         return;
