@@ -1,5 +1,6 @@
 var currentPageUser, currentPageTopic, currentPageComment = 1;
 var nbPageUser, nbPageTopic, nbPageComment;
+var nbByPage = 10;
 
 function getPageUsers() {
     fetch('api.php', {
@@ -14,7 +15,7 @@ function getPageUsers() {
     .then(data => {
         data = JSON.parse(data);
         if (data.success == true) {
-            nbPageUser = Math.ceil(data.data[0] / 10);
+            nbPageUser = Math.ceil(data.data[0] / nbByPage);
             const pagingUser = document.querySelector('#paging-user');
             let htmlPaging = "";
             for (let numPage = 1; numPage < nbPageUser+1; numPage++) {
@@ -30,10 +31,9 @@ function getPageUsers() {
 }
 
 function getUsers(page = 1) {
-    let limit = 10;
     currentPageUser = page;
     getPageUsers();
-    const offset = (page - 1) * limit;
+    const offset = (page - 1) * nbByPage;
     fetch('api.php', {
         method: 'POST',
         headers: {
@@ -41,7 +41,7 @@ function getUsers(page = 1) {
         },
         body: JSON.stringify({
             action: "get-users",
-            limit: limit,
+            limit: nbByPage,
             offset: offset
         })
     }).then(res => res.text())
@@ -146,7 +146,7 @@ function getPageTopics() {
     .then(data => {
         data = JSON.parse(data);
         if (data.success == true) {
-            nbPageTopic = Math.ceil(data.data[0] / 10);
+            nbPageTopic = Math.ceil(data.data[0] / nbByPage);
             const pagingTopic = document.querySelector('#paging-topic');
             let htmlPaging = "";
             for (let numPage = 1; numPage < nbPageTopic+1; numPage++) {
@@ -162,10 +162,9 @@ function getPageTopics() {
 }
 
 function getTopics(page = 1) {
-    let limit = 10;
     currentPageTopic = page;
     getPageTopics();
-    const offset = (page - 1) * limit;
+    const offset = (page - 1) * nbByPage;
     fetch('api.php', {
         method: 'POST',
         headers: {
@@ -173,7 +172,7 @@ function getTopics(page = 1) {
         },
         body: JSON.stringify({
             action: "get-topics",
-            limit: limit,
+            limit: nbByPage,
             offset: offset
         })
     }).then(res => res.text())
@@ -251,12 +250,12 @@ function getPageComments() {
     .then(data => {
         data = JSON.parse(data);
         if (data.success == true) {
-            nbPageComment = Math.ceil(data.data[0] / 10);
+            nbPageComment = Math.ceil(data.data[0] / nbByPage);
             const pagingComment = document.querySelector('#paging-comment');
             let htmlPaging = "";
             for (let numPage = 1; numPage < nbPageComment+1; numPage++) {
                 if (numPage == currentPageComment) {
-                    htmlPaging += `<button class="page-active"">${numPage}</button>`;
+                    htmlPaging += `<button class="page-active">${numPage}</button>`;
                 } else {
                     htmlPaging += `<button onclick="getComments(${numPage});">${numPage}</button>`;
                 }
@@ -267,10 +266,9 @@ function getPageComments() {
 }
 
 function getComments(page = 1) {
-    let limit = 10;
     currentPageComment = page;
     getPageComments();
-    const offset = (page - 1) * limit;
+    const offset = (page - 1) * nbByPage;
     fetch('api.php', {
         method: 'POST',
         headers: {
@@ -278,7 +276,7 @@ function getComments(page = 1) {
         },
         body: JSON.stringify({
             action: "get-comments",
-            limit: limit,
+            limit: nbByPage,
             offset: offset
         })
     }).then(res => res.text())

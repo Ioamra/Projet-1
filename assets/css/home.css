@@ -23,4 +23,25 @@
   flex-direction: row;
   justify-content: space-between;
   margin: 0 0.5em;
+}
+
+.paging {
+  display: flex;
+  justify-content: center;
+}
+.paging button {
+  margin: 0.6em 0.2em 0 0.2em;
+  padding: 0.2em 0.4em;
+  cursor: pointer;
+  border: 1px solid rgb(170, 170, 170);
+}
+.paging button.page-active {
+  background-color: transparent;
+  border: 1px solid rgb(170, 170, 170);
+  color: gray;
+  cursor: default;
+}
+.paging button a {
+  text-decoration: none;
+  color: black;
 }/*# sourceMappingURL=home.css.map */

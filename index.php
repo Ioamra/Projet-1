@@ -18,10 +18,13 @@
     require_once 'includes/nav.php';
     require_once 'includes/btn-return-top.php';
     
-    $nb_topics_by_page = 20;
+    $nb_topics_by_page = 10;
     $page = isset($_GET['page']) ? $_GET['page'] : 1;
     $offset = ($page - 1) * $nb_topics_by_page;
-    $req = $bdd->prepare("SELECT id_topic, title_topic, message_topic, date_topic, pseudo_user FROM topic INNER JOIN user ON topic.id_user = user.id_user LIMIT $nb_topics_by_page OFFSET $offset");
+    $req = $bdd->prepare("SELECT COUNT(id_topic) FROM topic");
+    $req->execute();
+    $nb_page = ceil(($req->fetch()[0]) / $nb_topics_by_page);
+    $req = $bdd->prepare("SELECT id_topic, title_topic, message_topic, date_topic, pseudo_user FROM topic INNER JOIN user ON topic.id_user = user.id_user ORDER BY id_topic DESC LIMIT $nb_topics_by_page OFFSET $offset");
     $req->execute();
     $list_topic = $req->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -43,6 +46,17 @@
     <?php
         }
     ?>
+        <section id="paging-user" class="paging">
+            <?php
+            for ($i=1; $i < $nb_page+1; $i++) { 
+                if ($i == $page) {
+                    echo '<button class="page-active">'.$i.'</button>';
+                } else {
+                    echo '<button><a href="index.php?page='.$i.'">'.$i.'</a></button>';
+                }
+            }
+            ?>
+        </section>
     </section>
 </body>
 </html>
