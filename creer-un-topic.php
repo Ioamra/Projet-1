@@ -34,7 +34,7 @@ if (isset($_POST['submit'])) {
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <title>Page d'acceuil</title>
+    <title>Natter - Page d'acceuil</title>
     <meta name="description" content="Créez votre topic sur Natter : partagez vos idées et lancez des discussions captivantes en quelques clics !">
     <?php require_once 'includes/head.php'; ?>
     <link rel="stylesheet" href="assets/css/creer-un-topic.css">

@@ -12,7 +12,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <title><?=limitContent($topic['title_topic'], 40)?></title>
+    <title>Natter - <?=limitContent($topic['title_topic'], 40)?></title>
     <meta name="description" content="<?=limitContent($topic['message_topic'], 160)?>">
     <?php require_once 'includes/head.php'; ?>
     <link rel="stylesheet" href="assets/css/view-topic.css">

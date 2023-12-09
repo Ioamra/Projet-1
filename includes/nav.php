@@ -1,14 +1,14 @@
 <nav id="navbar" class="navbar">
     <section class="nav-header">
-        <section class="nav-logo">
+        <div class="nav-logo">
             <a href="index.php">
                 <img src="assets/img/logo.png" alt="logo">
             </a>
-        </section>
-        <h1 class="nav-title">Nom du site</h1>  
-        <section class="icon-menu-dropdown">
+        </div>
+        <h2 class="nav-title">Natter</h2>  
+        <div class="icon-menu-dropdown">
             <img src="assets/svg/menu.svg" alt="menu" onclick="toggleNavLinks()">
-        </section>
+        </div>
     </section>
     <ul class="nav-links">
     <?php

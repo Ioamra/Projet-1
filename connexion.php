@@ -26,7 +26,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <title>Connexion</title>
+    <title>Natter - Connexion</title>
     <?php require_once 'includes/head.php'; ?>
     <meta name="description" content="Connectez-vous à notre forum pour participer à des discussions passionnantes, poser des questions, et partager vos connaissances avec la communauté.">
     <link rel="stylesheet" href="assets/css/login.css">

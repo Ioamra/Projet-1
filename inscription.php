@@ -64,7 +64,7 @@ if (isset($_POST['submit'])) {
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <title>Inscription</title>
+    <title>Natter - Inscription</title>
     <meta name="description" content="Rejoignez notre forum en vous inscrivant dès maintenant. Profitez d'une communauté dynamique où vous pouvez partager vos connaissances et poser des questions.">
     <?php require_once 'includes/head.php'; ?>
     <link rel="stylesheet" href="assets/css/login.css">

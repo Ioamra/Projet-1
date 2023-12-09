@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <title>Page d'acceuil</title>
+    <title>Natter - Page d'acceuil</title>
     <meta name="description" content="Rejoignez Natter : un forum dynamique où les passionnés de technologie et d'innovation partagent idées, astuces et discussions sur les dernières tendances.">
     <?php require_once 'includes/head.php'; ?>
     <link rel="stylesheet" href="assets/css/home.css">
