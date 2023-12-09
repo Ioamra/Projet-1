@@ -16,7 +16,7 @@
             echo '<li><a href="connexion.php" title="connexion">Connexion</a></li>';
             echo '<li><a href="inscription.php" title="inscription">Inscription</a></li>';
         } else {
-            echo '<li><a href="index.php" title="acceuil">Acceuil</a></li>';
+            echo '<li><a href="index.php" title="acceuil">Accueil</a></li>';
             echo '<li><a href="creer-un-topic.php" title="créer un topic">Créer un topic</a></li>';
             if ($_SESSION['role'] == 1) {
                 echo '<li><a href="admin.php" title="administration">Admin</a></li>';
