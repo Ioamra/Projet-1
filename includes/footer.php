@@ -1,3 +1,3 @@
 <div class="footer">
-    Réalisé pas Ioamra Monchau, Boualem Mostefaoui et Alan Riehl.
+    Réalisé par Ioamra Monchau, Boualem Mostefaoui et Alan Riehl.
 </div>
